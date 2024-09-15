@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -14,43 +14,43 @@ const products = [
 ];
 
 const FeaturedProducts = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const productsPerPage = 3;
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
-  const nextProduct = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
+  const nextPage = () => {
+    setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
   };
 
-  const prevProduct = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
+  const prevPage = () => {
+    setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
   };
+
+  const displayedProducts = products.slice(
+    currentPage * productsPerPage,
+    (currentPage + 1) * productsPerPage
+  );
 
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-black">Featured Products</h2>
         <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              className="flex justify-center"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProductCard product={products[currentIndex]} />
-            </motion.div>
-          </AnimatePresence>
+          <div className="flex justify-center space-x-8">
+            {displayedProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
           <Button
             className="absolute left-0 top-1/2 transform -translate-y-1/2"
-            onClick={prevProduct}
+            onClick={prevPage}
             variant="outline"
           >
             <ChevronLeft className="h-6 w-6" />
           </Button>
           <Button
             className="absolute right-0 top-1/2 transform -translate-y-1/2"
-            onClick={nextProduct}
+            onClick={nextPage}
             variant="outline"
           >
             <ChevronRight className="h-6 w-6" />
