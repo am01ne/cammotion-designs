@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -17,6 +18,10 @@ const products = [
 
 const FeaturedProducts = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   const nextProduct = () => {
     setStartIndex((prevIndex) => (prevIndex + 1) % products.length);
@@ -31,16 +36,38 @@ const FeaturedProducts = () => {
     return products[productIndex];
   });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 100, damping: 10 } },
+  };
+
   return (
-    <section className="py-16 bg-white">
+    <section ref={ref} className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-black">Featured Products</h2>
         <div className="relative">
-          <div className="flex justify-center space-x-4">
-            {displayedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <motion.div
+            className="flex justify-center space-x-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
+            {displayedProducts.map((product, index) => (
+              <motion.div key={`${product.id}-${index}`} variants={itemVariants}>
+                <ProductCard product={product} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <Button
             className="absolute left-0 top-1/2 transform -translate-y-1/2"
             onClick={prevProduct}
