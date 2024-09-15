@@ -20,31 +20,64 @@ const Index = () => {
   );
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 10
+    }
+  }
+};
+
 const AITools = () => {
   return (
-    <section className="py-16">
+    <motion.section
+      className="py-16"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
+    >
       <div className="container mx-auto px-4 text-center">
-        <div className="mb-16">
+        <motion.div className="mb-16" variants={itemVariants}>
           <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">AI Tools</div>
           <h2 className="text-4xl font-bold mb-4">Go beyond the build</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             CameraHub's AI tools elevate your photography projects through optimization, editing suggestions, and more.
           </p>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AIToolCard
-            title="Smart Editing"
-            description="AI-powered editing suggestions to enhance your photos with just a click."
-            image="/smart-editing.jpg"
-          />
-          <AIToolCard
-            title="Auto Tagging"
-            description="Automatically tag and categorize your photos for easy organization and searching."
-            image="/auto-tagging.jpg"
-          />
+          <motion.div variants={itemVariants}>
+            <AIToolCard
+              title="Smart Editing"
+              description="AI-powered editing suggestions to enhance your photos with just a click."
+              image="/smart-editing.jpg"
+            />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <AIToolCard
+              title="Auto Tagging"
+              description="Automatically tag and categorize your photos for easy organization and searching."
+              image="/auto-tagging.jpg"
+            />
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
@@ -72,28 +105,40 @@ const AIToolCard = ({ title, description, image }) => {
 
 const ExploreResources = () => {
   return (
-    <section className="py-16 bg-gray-900">
+    <motion.section
+      className="py-16 bg-gray-900"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8">Explore resources</h2>
+        <motion.h2 className="text-3xl font-bold mb-8" variants={itemVariants}>Explore resources</motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ResourceCard
-            title="CameraHub University"
-            description="Learn photography and editing techniques for free"
-            link="#"
-          />
-          <ResourceCard
-            title="Blog"
-            description="Tips, tricks, and insights for photographers"
-            link="#"
-          />
-          <ResourceCard
-            title="Community"
-            description="Connect with fellow photographers and share your work"
-            link="#"
-          />
+          <motion.div variants={itemVariants}>
+            <ResourceCard
+              title="CameraHub University"
+              description="Learn photography and editing techniques for free"
+              link="#"
+            />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <ResourceCard
+              title="Blog"
+              description="Tips, tricks, and insights for photographers"
+              link="#"
+            />
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <ResourceCard
+              title="Community"
+              description="Connect with fellow photographers and share your work"
+              link="#"
+            />
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
