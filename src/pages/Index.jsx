@@ -6,50 +6,32 @@ import Hero from '../components/Hero';
 import FeaturedProducts from '../components/FeaturedProducts';
 import Footer from '../components/Footer';
 
-const Index = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
-      <Header />
-      <main className="flex-grow">
-        <Hero />
-        <FeaturedProducts />
-        <AITools />
-        <ExploreResources />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Index = () => (
+  <div className="min-h-screen flex flex-col bg-black text-white">
+    <Header />
+    <main className="flex-grow">
+      <Hero />
+      <FeaturedProducts />
+      <AITools />
+      <ExploreResources />
+    </main>
+    <Footer />
+  </div>
+);
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3
-    }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 10
-    }
-  }
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 10 } }
 };
 
 const AITools = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   React.useEffect(() => {
     if (inView) {
@@ -60,13 +42,7 @@ const AITools = () => {
   }, [controls, inView]);
 
   return (
-    <motion.section
-      ref={ref}
-      className="py-16"
-      initial="hidden"
-      animate={controls}
-      variants={containerVariants}
-    >
+    <motion.section ref={ref} className="py-16" initial="hidden" animate={controls} variants={containerVariants}>
       <div className="container mx-auto px-4 text-center">
         <motion.div className="mb-16" variants={itemVariants}>
           <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">AI Tools</div>
@@ -76,16 +52,8 @@ const AITools = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AIToolCard
-            title="Smart Editing"
-            description="AI-powered editing suggestions to enhance your photos with just a click."
-            image="/smart-editing.jpg"
-          />
-          <AIToolCard
-            title="Auto Tagging"
-            description="Automatically tag and categorize your photos for easy organization and searching."
-            image="/auto-tagging.jpg"
-          />
+          <AIToolCard title="Smart Editing" description="AI-powered editing suggestions to enhance your photos with just a click." image="/smart-editing.jpg" />
+          <AIToolCard title="Auto Tagging" description="Automatically tag and categorize your photos for easy organization and searching." image="/auto-tagging.jpg" />
         </div>
       </div>
     </motion.section>
@@ -93,25 +61,13 @@ const AITools = () => {
 };
 
 const AIToolCard = ({ title, description, image }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
-  React.useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, rotateY: 0 });
-    } else {
-      controls.start({ opacity: 0, rotateY: -90 });
-    }
-  }, [controls, inView]);
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, rotateY: -90 }}
-      animate={controls}
+      animate={{ opacity: inView ? 1 : 0, rotateY: inView ? 0 : -90 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="bg-gray-900 rounded-lg overflow-hidden h-full"
     >
@@ -132,10 +88,7 @@ const AIToolCard = ({ title, description, image }) => {
 
 const ExploreResources = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   React.useEffect(() => {
     if (inView) {
@@ -146,31 +99,13 @@ const ExploreResources = () => {
   }, [controls, inView]);
 
   return (
-    <motion.section
-      ref={ref}
-      className="py-16 bg-gray-900"
-      initial="hidden"
-      animate={controls}
-      variants={containerVariants}
-    >
+    <motion.section ref={ref} className="py-16 bg-gray-900" initial="hidden" animate={controls} variants={containerVariants}>
       <div className="container mx-auto px-4">
         <motion.h2 className="text-3xl font-bold mb-8" variants={itemVariants}>Explore resources</motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ResourceCard
-            title="CameraHub University"
-            description="Learn photography and editing techniques for free"
-            link="#"
-          />
-          <ResourceCard
-            title="Blog"
-            description="Tips, tricks, and insights for photographers"
-            link="#"
-          />
-          <ResourceCard
-            title="Community"
-            description="Connect with fellow photographers and share your work"
-            link="#"
-          />
+          <ResourceCard title="CameraHub University" description="Learn photography and editing techniques for free" link="#" />
+          <ResourceCard title="Blog" description="Tips, tricks, and insights for photographers" link="#" />
+          <ResourceCard title="Community" description="Connect with fellow photographers and share your work" link="#" />
         </div>
       </div>
     </motion.section>
@@ -178,25 +113,13 @@ const ExploreResources = () => {
 };
 
 const ResourceCard = ({ title, description, link }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
-  React.useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    } else {
-      controls.start({ opacity: 0, y: 50 });
-    }
-  }, [controls, inView]);
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={controls}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
       transition={{ duration: 0.3 }}
       className="bg-black rounded-lg p-6"
     >
