@@ -14,19 +14,19 @@ const testimonials = [
   {
     name: 'Sarah Johnson',
     role: 'Professional Photographer',
-    content: 'The cameras from CameraHub have revolutionized my photography. The image quality is unparalleled!',
+    content: "The cameras from CameraHub have revolutionized my photography. The image quality is unparalleled!",
     avatar: '/avatar1.jpg',
   },
   {
     name: 'Michael Chen',
     role: 'Videographer',
-    content: 'As a videographer, I need reliable equipment. CameraHub delivers every time with their top-notch products.',
+    content: "As a videographer, I need reliable equipment. CameraHub delivers every time with their top-notch products.",
     avatar: '/avatar2.jpg',
   },
   {
     name: 'Emily Rodriguez',
     role: 'Travel Blogger',
-    content: 'I've been using CameraHub gear for all my travels. Durable, lightweight, and produces stunning footage.',
+    content: "I've been using CameraHub gear for all my travels. Durable, lightweight, and produces stunning footage.",
     avatar: '/avatar3.jpg',
   },
 ];
