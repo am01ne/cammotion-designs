@@ -8,55 +8,63 @@ const products = [
   { id: 2, name: 'Mirrorless Wonder', price: '$999', image: '/camera2.jpg' },
   { id: 3, name: 'Compact Powerhouse', price: '$699', image: '/camera3.jpg' },
   { id: 4, name: 'Action Cam Pro', price: '$399', image: '/camera4.jpg' },
+  { id: 5, name: 'Vintage Film Camera', price: '$599', image: '/camera5.jpg' },
+  { id: 6, name: 'Smartphone Gimbal', price: '$199', image: '/camera6.jpg' },
 ];
 
 const FeaturedProducts = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-black">Featured Products</h2>
-        <div className="max-w-md mx-auto space-y-6">
-          {products.map((product) => (
+        <motion.div
+          className="flex space-x-6"
+          animate={{
+            x: [0, -1920],
+            transition: {
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              },
+            },
+          }}
+        >
+          {[...products, ...products].map((product, index) => (
             <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              key={`${product.id}-${index}`}
+              className="flex-shrink-0"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                <Card className="overflow-hidden border-none shadow-lg bg-white hover:bg-gray-50 transition-colors duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center space-x-4">
-                      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                        <Avatar className="w-16 h-16">
-                          <img src={product.image} alt={product.name} className="object-cover" />
-                        </Avatar>
-                      </motion.div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-black">{product.name}</h3>
-                        <p className="text-sm text-gray-500">{product.price}</p>
-                      </div>
+              <Card className="w-64 overflow-hidden border-none shadow-lg bg-white hover:bg-gray-50 transition-colors duration-300">
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center space-y-4">
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                      <Avatar className="w-32 h-32">
+                        <img src={product.image} alt={product.name} className="object-cover" />
+                      </Avatar>
+                    </motion.div>
+                    <div className="text-center">
+                      <h3 className="text-lg font-semibold text-black">{product.name}</h3>
+                      <p className="text-sm text-gray-500">{product.price}</p>
                     </div>
-                    <div className="mt-4 flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-500">In Stock</span>
-                      <motion.button
-                        className="px-3 py-1 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Add to Cart
-                      </motion.button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  </div>
+                  <div className="mt-4 flex justify-center">
+                    <motion.button
+                      className="px-4 py-2 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Add to Cart
+                    </motion.button>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
