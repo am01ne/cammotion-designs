@@ -3,105 +3,116 @@ import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import FeaturedProducts from '../components/FeaturedProducts';
-import ClientsAndTestimonials from '../components/ClientsAndTestimonials';
 import Footer from '../components/Footer';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Header />
       <main className="flex-grow">
         <Hero />
         <FeaturedProducts />
-        <CameraCategories />
-        <ClientsAndTestimonials />
-        <BlogPreview />
+        <AITools />
+        <ExploreResources />
       </main>
       <Footer />
     </div>
   );
 };
 
-const CameraCategories = () => {
-  const categories = [
-    { name: 'DSLR', image: '/dslr.jpg' },
-    { name: 'Mirrorless', image: '/mirrorless.jpg' },
-    { name: 'Point & Shoot', image: '/point-and-shoot.jpg' },
-    { name: 'Action Cameras', image: '/action-camera.jpg' },
-  ];
-
+const AITools = () => {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Explore Camera Categories</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="overflow-hidden">
-                <motion.img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-48 object-cover"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
-                  <Button variant="outline">Explore</Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+    <section className="py-16">
+      <div className="container mx-auto px-4 text-center">
+        <div className="mb-16">
+          <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">AI Tools</div>
+          <h2 className="text-4xl font-bold mb-4">Go beyond the build</h2>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            CameraHub's AI tools elevate your photography projects through optimization, editing suggestions, and more.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <AIToolCard
+            title="Smart Editing"
+            description="AI-powered editing suggestions to enhance your photos with just a click."
+            image="/smart-editing.jpg"
+          />
+          <AIToolCard
+            title="Auto Tagging"
+            description="Automatically tag and categorize your photos for easy organization and searching."
+            image="/auto-tagging.jpg"
+          />
         </div>
       </div>
     </section>
   );
 };
 
-const BlogPreview = () => {
-  const blogPosts = [
-    { title: 'Top 10 Camera Accessories for 2024', image: '/blog-accessories.jpg' },
-    { title: 'Mastering Night Photography: Tips and Tricks', image: '/blog-night-photography.jpg' },
-    { title: 'The Rise of Mirrorless Cameras: What You Need to Know', image: '/blog-mirrorless.jpg' },
-  ];
-
+const AIToolCard = ({ title, description, image }) => {
   return (
-    <section className="py-16 bg-white">
+    <motion.div
+      className="bg-gray-900 rounded-lg overflow-hidden"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
+    >
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-6">
+        <h3 className="text-2xl font-bold mb-2">{title}</h3>
+        <p className="text-gray-300 mb-4">{description}</p>
+        <a href="#" className="text-blue-500 font-semibold flex items-center">
+          Learn more
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </motion.div>
+  );
+};
+
+const ExploreResources = () => {
+  return (
+    <section className="py-16 bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Latest from Our Blog</h2>
+        <h2 className="text-3xl font-bold mb-8">Explore resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
-            <motion.div
-              key={post.title}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <Card className="overflow-hidden">
-                <motion.img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  <Button variant="link">Read More</Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <ResourceCard
+            title="CameraHub University"
+            description="Learn photography and editing techniques for free"
+            link="#"
+          />
+          <ResourceCard
+            title="Blog"
+            description="Tips, tricks, and insights for photographers"
+            link="#"
+          />
+          <ResourceCard
+            title="Community"
+            description="Connect with fellow photographers and share your work"
+            link="#"
+          />
         </div>
       </div>
     </section>
+  );
+};
+
+const ResourceCard = ({ title, description, link }) => {
+  return (
+    <motion.div
+      className="bg-black rounded-lg p-6"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
+    >
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-gray-300 mb-4">{description}</p>
+      <a href={link} className="text-blue-500 font-semibold flex items-center">
+        Explore
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </motion.div>
   );
 };
 

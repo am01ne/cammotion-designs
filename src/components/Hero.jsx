@@ -29,7 +29,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" className="bg-white text-black hover:bg-gray-200">
+            <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
               Shop Now
             </Button>
           </motion.div>

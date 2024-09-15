@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
  
-    --primary: 0 0% 0%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
  
     --secondary: 0 0% 96%;
@@ -36,17 +36,17 @@
   }
  
   .dark {
-    --background: 0 0% 0%;
+    --background: 0 0% 3%;
     --foreground: 0 0% 100%;
  
-    --card: 0 0% 0%;
+    --card: 0 0% 3%;
     --card-foreground: 0 0% 100%;
  
-    --popover: 0 0% 0%;
+    --popover: 0 0% 3%;
     --popover-foreground: 0 0% 100%;
  
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
  
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
@@ -73,4 +73,30 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.text-wrap-balance {
+  text-wrap: balance;
+}
+
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.u-img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-button-disabled {
+  opacity: 0.3 !important;
 }

@@ -9,14 +9,14 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 120 }}
-      className="bg-white shadow-md"
+      className="bg-black text-white shadow-md"
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <Link to="/" className="text-2xl font-bold text-black">CameraHub</Link>
+          <Link to="/" className="text-2xl font-bold">CameraHub</Link>
         </motion.div>
         <nav className="hidden md:flex space-x-6">
           <NavLink to="/">Home</NavLink>
@@ -28,21 +28,21 @@ const Header = () => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-black hover:text-gray-600"
+            className="text-white hover:text-gray-300"
           >
             <Search size={20} />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-black hover:text-gray-600"
+            className="text-white hover:text-gray-300"
           >
             <ShoppingCart size={20} />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="md:hidden text-black hover:text-gray-600"
+            className="md:hidden text-white hover:text-gray-300"
           >
             <Menu size={20} />
           </motion.button>
@@ -54,7 +54,7 @@ const Header = () => {
 
 const NavLink = ({ to, children }) => (
   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-    <Link to={to} className="text-black hover:text-gray-600">{children}</Link>
+    <Link to={to} className="text-white hover:text-gray-300">{children}</Link>
   </motion.div>
 );
 
