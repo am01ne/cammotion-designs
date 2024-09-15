@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import FeaturedProducts from '../components/FeaturedProducts';
+import ClientsAndTestimonials from '../components/ClientsAndTestimonials';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,7 +16,7 @@ const Index = () => {
         <Hero />
         <FeaturedProducts />
         <CameraCategories />
-        <Testimonials />
+        <ClientsAndTestimonials />
         <BlogPreview />
       </main>
       <Footer />
@@ -64,40 +65,6 @@ const CameraCategories = () => {
   );
 };
 
-const Testimonials = () => {
-  const testimonials = [
-    { name: 'John Doe', role: 'Professional Photographer', content: 'The cameras from CameraHub have revolutionized my photography. The quality is unmatched!' },
-    { name: 'Jane Smith', role: 'Travel Vlogger', content: 'I\'ve been using CameraHub gear for all my travels. Durable, reliable, and produces stunning footage.' },
-    { name: 'Mike Johnson', role: 'Wildlife Photographer', content: 'The zoom capabilities and image stabilization of CameraHub\'s cameras are perfect for capturing wildlife.' },
-  ];
-
-  return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <Card>
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4">"{testimonial.content}"</p>
-                  <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const BlogPreview = () => {
   const blogPosts = [
     { title: 'Top 10 Camera Accessories for 2024', image: '/blog-accessories.jpg' },
@@ -106,7 +73,7 @@ const BlogPreview = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Latest from Our Blog</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
