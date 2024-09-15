@@ -16,7 +16,7 @@ const Header = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <Link to="/" className="text-2xl font-bold text-gray-800">CameraHub</Link>
+          <Link to="/" className="text-2xl font-bold text-black">CameraHub</Link>
         </motion.div>
         <nav className="hidden md:flex space-x-6">
           <NavLink to="/">Home</NavLink>
@@ -28,21 +28,21 @@ const Header = () => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-black hover:text-gray-600"
           >
             <Search size={20} />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-black hover:text-gray-600"
           >
             <ShoppingCart size={20} />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="md:hidden text-gray-600 hover:text-gray-800"
+            className="md:hidden text-black hover:text-gray-600"
           >
             <Menu size={20} />
           </motion.button>
@@ -54,7 +54,7 @@ const Header = () => {
 
 const NavLink = ({ to, children }) => (
   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-    <Link to={to} className="text-gray-600 hover:text-gray-800">{children}</Link>
+    <Link to={to} className="text-black hover:text-gray-600">{children}</Link>
   </motion.div>
 );
 

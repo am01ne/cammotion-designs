@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <div className="relative bg-gray-900 text-white">
+    <div className="relative bg-black text-white">
       <div className="absolute inset-0 overflow-hidden">
         <motion.img
           src="/hero-background.jpg"
@@ -29,7 +29,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-200">
+            <Button size="lg" className="bg-white text-black hover:bg-gray-200">
               Shop Now
             </Button>
           </motion.div>

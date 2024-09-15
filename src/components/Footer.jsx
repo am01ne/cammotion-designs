@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Video } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-black text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -50,7 +50,7 @@ const Footer = () => {
 const SocialIcon = ({ icon }) => (
   <motion.a
     href="#"
-    className="bg-gray-800 p-2 rounded-full hover:bg-gray-700"
+    className="bg-white text-black p-2 rounded-full hover:bg-gray-200"
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.9 }}
   >
