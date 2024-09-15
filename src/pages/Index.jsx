@@ -1,5 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import FeaturedProducts from '../components/FeaturedProducts';
@@ -44,12 +45,26 @@ const itemVariants = {
 };
 
 const AITools = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
   return (
     <motion.section
+      ref={ref}
       className="py-16"
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      animate={controls}
       variants={containerVariants}
     >
       <div className="container mx-auto px-4 text-center">
@@ -61,30 +76,16 @@ const AITools = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, rotateY: -90 }}
-            whileInView={{ opacity: 1, rotateY: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <AIToolCard
-              title="Smart Editing"
-              description="AI-powered editing suggestions to enhance your photos with just a click."
-              image="/smart-editing.jpg"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, rotateY: 90 }}
-            whileInView={{ opacity: 1, rotateY: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <AIToolCard
-              title="Auto Tagging"
-              description="Automatically tag and categorize your photos for easy organization and searching."
-              image="/auto-tagging.jpg"
-            />
-          </motion.div>
+          <AIToolCard
+            title="Smart Editing"
+            description="AI-powered editing suggestions to enhance your photos with just a click."
+            image="/smart-editing.jpg"
+          />
+          <AIToolCard
+            title="Auto Tagging"
+            description="Automatically tag and categorize your photos for easy organization and searching."
+            image="/auto-tagging.jpg"
+          />
         </div>
       </div>
     </motion.section>
@@ -92,8 +93,28 @@ const AITools = () => {
 };
 
 const AIToolCard = ({ title, description, image }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, rotateY: 0 });
+    } else {
+      controls.start({ opacity: 0, rotateY: -90 });
+    }
+  }, [controls, inView]);
+
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden h-full">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, rotateY: -90 }}
+      animate={controls}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="bg-gray-900 rounded-lg overflow-hidden h-full"
+    >
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
@@ -105,43 +126,51 @@ const AIToolCard = ({ title, description, image }) => {
           </svg>
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const ExploreResources = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
   return (
     <motion.section
+      ref={ref}
       className="py-16 bg-gray-900"
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      animate={controls}
       variants={containerVariants}
     >
       <div className="container mx-auto px-4">
         <motion.h2 className="text-3xl font-bold mb-8" variants={itemVariants}>Explore resources</motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div variants={itemVariants}>
-            <ResourceCard
-              title="CameraHub University"
-              description="Learn photography and editing techniques for free"
-              link="#"
-            />
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <ResourceCard
-              title="Blog"
-              description="Tips, tricks, and insights for photographers"
-              link="#"
-            />
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <ResourceCard
-              title="Community"
-              description="Connect with fellow photographers and share your work"
-              link="#"
-            />
-          </motion.div>
+          <ResourceCard
+            title="CameraHub University"
+            description="Learn photography and editing techniques for free"
+            link="#"
+          />
+          <ResourceCard
+            title="Blog"
+            description="Tips, tricks, and insights for photographers"
+            link="#"
+          />
+          <ResourceCard
+            title="Community"
+            description="Connect with fellow photographers and share your work"
+            link="#"
+          />
         </div>
       </div>
     </motion.section>
@@ -149,11 +178,27 @@ const ExploreResources = () => {
 };
 
 const ResourceCard = ({ title, description, link }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, y: 0 });
+    } else {
+      controls.start({ opacity: 0, y: 50 });
+    }
+  }, [controls, inView]);
+
   return (
     <motion.div
-      className="bg-black rounded-lg p-6"
-      whileHover={{ scale: 1.05 }}
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={controls}
       transition={{ duration: 0.3 }}
+      className="bg-black rounded-lg p-6"
     >
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-300 mb-4">{description}</p>
