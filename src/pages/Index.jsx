@@ -6,18 +6,45 @@ import Hero from '../components/Hero';
 import FeaturedProducts from '../components/FeaturedProducts';
 import Footer from '../components/Footer';
 
-const Index = () => (
-  <div className="min-h-screen flex flex-col bg-black text-white">
-    <Header />
-    <main className="flex-grow">
-      <Hero />
-      <FeaturedProducts />
-      <AITools />
-      <ExploreResources />
-    </main>
-    <Footer />
-  </div>
-);
+const Index = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [controls, inView]);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-black text-white">
+      <Header />
+      <main className="flex-grow">
+        <Hero />
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 50 }
+          }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <FeaturedProducts />
+        </motion.div>
+        <AITools />
+        <ExploreResources />
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -66,9 +93,9 @@ const AIToolCard = ({ title, description, image }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, rotateY: -90 }}
-      animate={{ opacity: inView ? 1 : 0, rotateY: inView ? 0 : -90 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-gray-900 rounded-lg overflow-hidden h-full"
     >
       <img src={image} alt={title} className="w-full h-48 object-cover" />
@@ -120,7 +147,7 @@ const ResourceCard = ({ title, description, link }) => {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-black rounded-lg p-6"
     >
       <h3 className="text-xl font-bold mb-2">{title}</h3>
