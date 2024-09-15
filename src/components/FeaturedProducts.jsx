@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar } from '@/components/ui/avatar';
 
 const products = [
   { id: 1, name: 'Pro DSLR Camera', price: '$1299', image: '/camera1.jpg' },
@@ -15,7 +15,7 @@ const FeaturedProducts = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-black">Featured Products</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <motion.div
               key={product.id}
@@ -23,15 +23,24 @@ const FeaturedProducts = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="overflow-hidden border border-gray-200">
-                <CardContent className="p-0">
-                  <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
+              <Card className="overflow-hidden border-none shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <Avatar className="w-16 h-16">
+                      <img src={product.image} alt={product.name} className="object-cover" />
+                    </Avatar>
+                    <div>
+                      <h3 className="text-lg font-semibold text-black">{product.name}</h3>
+                      <p className="text-sm text-gray-500">{product.price}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-500">In Stock</span>
+                    <button className="px-3 py-1 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors">
+                      Add to Cart
+                    </button>
+                  </div>
                 </CardContent>
-                <CardFooter className="flex flex-col items-start p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-black">{product.name}</h3>
-                  <p className="text-gray-600 mb-4">{product.price}</p>
-                  <Button variant="outline" className="w-full text-black border-black hover:bg-black hover:text-white">Add to Cart</Button>
-                </CardFooter>
               </Card>
             </motion.div>
           ))}
