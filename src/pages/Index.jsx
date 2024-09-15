@@ -38,7 +38,7 @@ const Index = () => {
         >
           <FeaturedProducts />
         </motion.div>
-        <AITools />
+        <Services />
         <ExploreResources />
       </main>
       <Footer />
@@ -56,7 +56,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 10 } }
 };
 
-const AITools = () => {
+const Services = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
@@ -72,22 +72,30 @@ const AITools = () => {
     <motion.section ref={ref} className="py-16" initial="hidden" animate={controls} variants={containerVariants}>
       <div className="container mx-auto px-4 text-center">
         <motion.div className="mb-16" variants={itemVariants}>
-          <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">AI Tools</div>
-          <h2 className="text-4xl font-bold mb-4">Go beyond the build</h2>
+          <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">Our Services</div>
+          <h2 className="text-4xl font-bold mb-4">Professional Equipment at Your Fingertips</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            CameraHub's AI tools elevate your photography projects through optimization, editing suggestions, and more.
+            CameraHub offers top-of-the-line camera rentals and a fully equipped studio for all your photography needs.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AIToolCard title="Smart Editing" description="AI-powered editing suggestions to enhance your photos with just a click." image="/smart-editing.jpg" />
-          <AIToolCard title="Auto Tagging" description="Automatically tag and categorize your photos for easy organization and searching." image="/auto-tagging.jpg" />
+          <ServiceCard 
+            title="Camera Rentals" 
+            description="Choose from our wide selection of professional cameras and lenses for your next shoot." 
+            image="/camera-rental.jpg" 
+          />
+          <ServiceCard 
+            title="Studio Reservations" 
+            description="Book our state-of-the-art studio space for your photography or videography projects." 
+            image="/studio-reservation.jpg" 
+          />
         </div>
       </div>
     </motion.section>
   );
 };
 
-const AIToolCard = ({ title, description, image }) => {
+const ServiceCard = ({ title, description, image }) => {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
