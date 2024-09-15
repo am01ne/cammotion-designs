@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar } from '@/components/ui/avatar';
 
 const products = [
   { id: 1, name: 'Pro DSLR Camera', price: '$1299', image: '/camera1.jpg' },
@@ -39,12 +38,17 @@ const FeaturedProducts = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Card className="w-64 overflow-hidden border-none shadow-lg bg-white hover:bg-gray-50 transition-colors duration-300">
-                <CardContent className="p-6">
+                <CardContent className="p-4">
                   <div className="flex flex-col items-center space-y-4">
-                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                      <Avatar className="w-32 h-32">
-                        <img src={product.image} alt={product.name} className="object-cover" />
-                      </Avatar>
+                    <motion.div 
+                      className="w-full h-48 overflow-hidden"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover"
+                      />
                     </motion.div>
                     <div className="text-center">
                       <h3 className="text-lg font-semibold text-black">{product.name}</h3>
