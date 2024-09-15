@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, YouTube } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Video } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -35,7 +35,7 @@ const Footer = () => {
               <SocialIcon icon={<Facebook size={20} />} />
               <SocialIcon icon={<Twitter size={20} />} />
               <SocialIcon icon={<Instagram size={20} />} />
-              <SocialIcon icon={<YouTube size={20} />} />
+              <SocialIcon icon={<Video size={20} />} />
             </div>
           </div>
         </div>
