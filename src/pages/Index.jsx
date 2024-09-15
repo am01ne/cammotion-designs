@@ -61,14 +61,24 @@ const AITools = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div variants={itemVariants}>
+          <motion.div
+            initial={{ opacity: 0, rotateY: -90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <AIToolCard
               title="Smart Editing"
               description="AI-powered editing suggestions to enhance your photos with just a click."
               image="/smart-editing.jpg"
             />
           </motion.div>
-          <motion.div variants={itemVariants}>
+          <motion.div
+            initial={{ opacity: 0, rotateY: 90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <AIToolCard
               title="Auto Tagging"
               description="Automatically tag and categorize your photos for easy organization and searching."
@@ -83,11 +93,7 @@ const AITools = () => {
 
 const AIToolCard = ({ title, description, image }) => {
   return (
-    <motion.div
-      className="bg-gray-900 rounded-lg overflow-hidden"
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className="bg-gray-900 rounded-lg overflow-hidden h-full">
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
@@ -99,7 +105,7 @@ const AIToolCard = ({ title, description, image }) => {
           </svg>
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
