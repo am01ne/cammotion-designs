@@ -23,25 +23,37 @@ const FeaturedProducts = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="overflow-hidden border-none shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <Avatar className="w-16 h-16">
-                      <img src={product.image} alt={product.name} className="object-cover" />
-                    </Avatar>
-                    <div>
-                      <h3 className="text-lg font-semibold text-black">{product.name}</h3>
-                      <p className="text-sm text-gray-500">{product.price}</p>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Card className="overflow-hidden border-none shadow-lg bg-white hover:bg-gray-50 transition-colors duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                        <Avatar className="w-16 h-16">
+                          <img src={product.image} alt={product.name} className="object-cover" />
+                        </Avatar>
+                      </motion.div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-black">{product.name}</h3>
+                        <p className="text-sm text-gray-500">{product.price}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-4 flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-500">In Stock</span>
-                    <button className="px-3 py-1 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors">
-                      Add to Cart
-                    </button>
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="mt-4 flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-500">In Stock</span>
+                      <motion.button
+                        className="px-3 py-1 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Add to Cart
+                      </motion.button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           ))}
         </div>
